@@ -20,7 +20,7 @@ override_dh_auto_build:
 
 override_dh_auto_install:
 	mkdir -p ${INSTALL_ROOT}/usr/bin
-	cp ${SB_TOP}/build/production/vrouter/dpdk/contrail-vrouter-dpdk ${INSTALL_ROOT}/usr/bin/
+#	cp ${SB_TOP}/build/production/vrouter/dpdk/contrail-vrouter-dpdk ${INSTALL_ROOT}/usr/bin/
 
 override_dh_fixperms:
 	dh_fixperms
