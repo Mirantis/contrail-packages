@@ -1,2 +1,1 @@
-debian/database_files/contrail-database.service lib/systemd/system/
 debian/nodemgr_files/contrail-database-nodemgr.service lib/systemd/system/

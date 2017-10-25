@@ -1,3 +1,0 @@
-debian/database_files/kafka etc/init.d
-debian/database_files/kafka.ini etc/contrail/supervisord_database_files
-INSTALL_SERIES
