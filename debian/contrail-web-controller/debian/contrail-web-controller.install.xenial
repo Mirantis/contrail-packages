@@ -1,1 +1,1 @@
-debian/systemd/contrail-webui-jobserver.service lib/systemd/system/
+debian/systemd/contrail-webui-middleware.service lib/systemd/system/
