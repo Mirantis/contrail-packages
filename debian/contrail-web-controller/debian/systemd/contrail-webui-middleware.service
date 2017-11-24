@@ -10,4 +10,4 @@ PIDFile=/var/run/contrail-web-jobserver.pid
 KillMode=process
 Restart=on-failure
 RestartPreventExitStatus=255
-Type=notify
+Type=simple
