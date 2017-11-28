@@ -3,6 +3,8 @@ Description=Contrail Database
 After=network.target
 
 [Service]
+StartLimitIntervalSec=0
+RestartSec=3s
 Type=forking
 Environment=CASSANDRA_USER_HOME=/var/lib/cassandra
 ExecStartPre=/usr/bin/contrail-cassandra-check-start

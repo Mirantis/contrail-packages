@@ -1,7 +1,11 @@
 [Unit]
 Description=Contrail WebUI Job Server
 ConditionPathExists=/etc/contrail/config.global.js
+After=network.target
+
 [Service]
+StartLimitIntervalSec=0
+RestartSec=3s
 WorkingDirectory=/var/lib/contrail-webui/contrail-web-core
 User=contrail
 Group=contrail
@@ -11,3 +15,5 @@ KillMode=process
 Restart=on-failure
 RestartPreventExitStatus=255
 Type=simple
+[Install]
+WantedBy=multi-user.target
