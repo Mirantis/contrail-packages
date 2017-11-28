@@ -3,6 +3,8 @@ Description="Contrail Database Node Mgr"
 After=network.target
 
 [Service]
+StartLimitIntervalSec=0
+RestartSec=3s
 Type=simple
 ExecStart=/usr/bin/contrail-nodemgr --nodetype=contrail-database
 PIDFile=/var/run/contrail/contrail-database-nodemgr.pid
