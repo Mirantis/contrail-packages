@@ -1,9 +1,9 @@
 [Unit]
 Description=Contrail Database
 After=network.target
+StartLimitIntervalSec=0
 
 [Service]
-StartLimitIntervalSec=0
 RestartSec=3s
 Type=forking
 Environment=CASSANDRA_USER_HOME=/var/lib/cassandra
