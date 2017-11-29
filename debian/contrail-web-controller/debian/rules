@@ -4,8 +4,14 @@ SB_TOP := $(shell pwd | sed -re "s/(.*)\/build\/packages(.*)/\1/")
 INSTALL_ROOT := $(shell pwd)
 export REPO=${SB_TOP}/contrail-web-controller,webController
 
+ifeq (,$(findstring trusty,$(VER)))
+        DH_WITH="--with systemd"
+else
+        DH_WITH=""
+endif
+
 %:
-	dh $@
+	dh $@ $(DH_WITH)
 
 override_dh_installinit:
 	dh_installinit

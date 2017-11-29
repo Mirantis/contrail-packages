@@ -2,9 +2,9 @@
 Description=Contrail WebUI Web Server
 ConditionPathExists=/etc/contrail/config.global.js
 After=network.target
+StartLimitIntervalSec=0
 
 [Service]
-StartLimitIntervalSec=0
 WorkingDirectory=/var/lib/contrail-webui/contrail-web-core
 User=contrail
 Group=contrail
