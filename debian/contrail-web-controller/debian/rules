@@ -15,8 +15,8 @@ endif
 
 override_dh_installinit:
 	dh_installinit
-	dh_installinit --name=contrail-webui-jobserver
-	dh_installinit --name=contrail-webui-webserver
+	dh_installinit --name=contrail-webui-middleware
+	dh_installinit --name=contrail-webui
 
 override_dh_auto_build:
 	# We can't use make package directly because it tries to fetch third party
