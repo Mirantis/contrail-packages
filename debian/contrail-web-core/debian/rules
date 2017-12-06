@@ -4,14 +4,20 @@ SB_TOP := $(shell pwd | sed -re "s/(.*)\/build\/packages(.*)/\1/")
 INSTALL_ROOT := $(shell pwd)
 export REPO=${SB_TOP}/contrail-web-core
 
+VER := $(shell lsb_release -c)
+
 ifeq (,$(findstring trusty,$(VER)))
-        DH_WITH="--with systemd"
+        DH_CMD=$@ --with systemd
 else
-        DH_WITH=""
+        DH_CMD=$@
 endif
 
 %:
-	dh $@ $(DH_WITH)
+	dh $(DH_CMD)
+
+override_dh_installinit:
+	dh_installinit
+	dh_installinit --name=contrail-webui
 
 override_dh_auto_build:
 	# We can't use make package directly because it tries to fetch third party
