@@ -23,6 +23,7 @@ override_dh_auto_build:
 	cp -a webroot/html/dashboard.tmpl webroot/html/dashboard.html; \
 	cp -a webroot/html/login.tmpl webroot/html/login.html; \
 	cp -a webroot/html/login-error.tmpl webroot/html/login-error.html; \
+	bash generate-keys.sh; \
 	./generate-files.sh 'prod-env' $(REPO));
 	(cd ${SB_TOP}/contrail-web-core; \
 	./dev-install.sh;)
@@ -37,6 +38,7 @@ override_dh_auto_build:
 
 override_dh_install:
 	cp -r -a ${SB_TOP}/contrail-web-core/Gruntfile.js ${INSTALL_ROOT}
+	cp -r -a ${SB_TOP}/contrail-web-core/keys ${INSTALL_ROOT}
 	cp -r -a ${SB_TOP}/contrail-web-core/package.json ${INSTALL_ROOT}
 	cp -r -a ${SB_TOP}/contrail-web-core/webroot ${INSTALL_ROOT}
 	cp -r -a ${SB_TOP}/contrail-web-core/jobServerStart.js ${INSTALL_ROOT}
