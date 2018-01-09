@@ -4,7 +4,6 @@ ifmap-server (0.3.2-1contrail4+SERIES1) SERIES; urgency=medium
 
  -- Filip Pytloun <filip@pytloun.cz>  Mon, 31 Oct 2016 13:52:01 +0100
 
->>>>>>> 53f4112... Add series to ifmap server version
 ifmap-server (0.3.2-1contrail3) precise; urgency=low
   * Launch line updated to allow supervisor restart
     on ifmap abnormal termination.
