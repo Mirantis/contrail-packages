@@ -41,6 +41,7 @@ Build-Depends: autoconf,
                libzookeeper-mt-dev,
                liburcu-dev,
                libopenmpi-dev,
+	       liblz4-dev,
                BUILDDEP_SERIES
 
 Package: contrail-analytics
