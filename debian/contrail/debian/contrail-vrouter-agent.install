@@ -19,4 +19,3 @@ debian/vrouter_files/vrouter-pre-stop.sh usr/lib/contrail
 debian/vrouter_files/20-vrouter-core-pattern.conf etc/sysctl.d
 usr/bin/contrail-toragent-setup
 usr/bin/contrail-toragent-cleanup
-INSTALL_SERIES
