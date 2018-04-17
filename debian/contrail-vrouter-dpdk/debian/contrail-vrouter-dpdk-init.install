@@ -10,4 +10,3 @@ debian/vrouter_files/if-vhost0                   usr/lib/contrail/bin
 debian/vrouter_files/vnagent_param_setup.sh      usr/lib/contrail/bin
 debian/vrouter_files/contrail_reboot             etc/contrail
 debian/vrouter_files/rpm_agent.conf              etc/contrail
-INSTALL_SERIES
