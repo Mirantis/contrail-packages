@@ -8,3 +8,4 @@ src /var/lib/contrail-webui/contrail-web-core
 webServerStart.js /var/lib/contrail-webui/contrail-web-core
 config/config.global.js /etc/contrail
 config/default.config.global.js /var/lib/contrail-webui/contrail-web-core/config
+INSTALL_SERIES
