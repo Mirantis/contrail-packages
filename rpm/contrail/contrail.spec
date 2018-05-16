@@ -450,6 +450,7 @@ Group:              Applications/System
 
 Requires:           contrail-lib >= %{_verstr}-%{_relstr}
 Requires:           python-paramiko
+Requires:           python2-passlib
 
 %description vrouter-agent
 Contrail Virtual Router Agent package
@@ -467,6 +468,7 @@ package provides the contrail-vrouter user space agent.
 %{_bindir}/contrail-toragent-setup
 %{_bindir}/contrail-toragent-cleanup
 %{_bindir}/contrail-vrouter-agent-health-check.py
+%{_bindir}/contrail_crypt_tunnel_client.py
 %config(noreplace) %{_contrailetc}/contrail-vrouter-agent.conf
 %config(noreplace) %{_contrailetc}/supervisord_vrouter.conf
 /etc/init.d/contrail-vrouter-agent
@@ -638,7 +640,7 @@ Requires:           python-jsonpickle
 Requires:           python-amqp
 Requires:           python-kazoo >= 1.3.1
 Requires:           python-ncclient >= 0.3.2
-Requires:           ansible >= 2.4.2
+Requires:           ansible < 2.5.0
 %if 0%{?rhel}
 Requires:           python-pysnmp
 %else
@@ -647,6 +649,8 @@ Requires:           python2-pysnmp
 Requires:           python-keystoneclient
 Requires:           python-keystonemiddleware
 Requires:           python-swiftclient
+Requires:           python-subprocess32 >= 3.2.6
+Requires:           python2-jsonschema >= 2.5.1
 
 %description config
 Contrail Config package
@@ -697,7 +701,8 @@ in a NoSQL database.
 %{python_sitelib}/device_api*
 %{python_sitelib}/contrail_issu*
 %if 0%{?rhel} > 6
-%docdir /usr/share/doc/contrail-config/*
+%docdir /usr/share/doc/contrail-config/
+/usr/share/doc/contrail-config/
 %endif
 /etc/contrail/supervisord_config.conf
 /etc/contrail/supervisord_config_files/contrail-api.ini

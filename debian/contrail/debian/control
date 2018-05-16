@@ -289,7 +289,9 @@ Depends: adduser,
          contrail-vrouter,
          supervisor,
          VROUTERDEP_SERIES
+         python-passlib,
          ${misc:Depends},
+         ${python:Depends},
          ${shlibs:Depends},
          ${dist:Depends}
 Recommends: contrail-nodemgr (>= ${source:Version}),
