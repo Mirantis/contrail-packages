@@ -1,5 +1,9 @@
-ifmap-server (0.3.2-1contrail4+SERIES1) SERIES; urgency=medium
+ifmap-server (0.3.2-1contrail4) precise; urgency=low
+  * fix for ifmap abonormal ternimation
 
+ -- Suresh Balineni <sbalineni@juniper.net>  Mon, 7 May 2018 18:34:13 -0800
+
+ifmap-server (0.3.2-1contrail4+SERIES1) SERIES; urgency=medium
   * Fix series for multi-distribution support
 
  -- Filip Pytloun <filip@pytloun.cz>  Mon, 31 Oct 2016 13:52:01 +0100
