@@ -221,7 +221,7 @@ debian-%:
 	cp -R tools/packages/debian/$(PACKAGE)/debian build/packages/$(PACKAGE)
 	cp -R tools/packages/utils build/packages/$(PACKAGE)/debian/
 	chmod u+x build/packages/$(PACKAGE)/debian/rules
-	(cd build/packages/$(PACKAGE); dch --version $(CONTRAIL_VERSION) && dch --release)
+	(cd build/packages/$(PACKAGE); dch --version $(CONTRAIL_VERSION) && dch --release --distribution $(SERIES) -m "")
 
 clean-%:
 	$(eval PACKAGE := $(patsubst clean-%,%,$@))
