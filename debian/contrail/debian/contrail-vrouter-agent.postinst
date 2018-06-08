@@ -74,6 +74,12 @@ LOGFILE=--log-file=/var/log/contrail/vrouter.log
 EOF
   fi
 
+  # change file permissions during upgrade
+  if [ -f /var/log/contrail/contrail-vrouter-nodemgr-stdout.log ]; then
+    chown contrail:contrail /var/log/contrail/process_statecontrail-vrouter.json
+    chown contrail:contrail /var/log/contrail/contrail-vrouter-nodemgr-stderr.log
+    chown contrail:contrail /var/log/contrail/contrail-vrouter-nodemgr-stdout.log
+  fi
 fi
 
 #DEBHELPER#
