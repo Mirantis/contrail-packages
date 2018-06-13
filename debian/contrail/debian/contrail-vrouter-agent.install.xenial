@@ -1,3 +1,8 @@
-etc/contrail/contrail-vrouter-nodemgr.conf
 lib/systemd/system/contrail-vrouter-nodemgr.service
 lib/systemd/system/contrail-vrouter-agent.service
+debian/vrouter_files/vnagent_ExecStartPre.sh usr/lib/contrail
+debian/vrouter_files/vnagent_ExecStartPost.sh usr/lib/contrail
+debian/vrouter_files/vnagent_ExecStopPost.sh usr/lib/contrail
+debian/vrouter_files/exec-vrouter-post-stop.sh usr/lib/contrail
+debian/vrouter_files/exec-vrouter-post-start.sh usr/lib/contrail
+debian/vrouter_files/exec-vrouter-pre-start.sh usr/lib/contrail
