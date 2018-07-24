@@ -39,6 +39,8 @@ TARGETS=control-node:node_mgr \
         database:node_mgr     \
         src:nodemgr
 
+USER ?= root
+
 %:
 	dh $@ --with $(DH_WITH) --parallel
 
@@ -91,6 +93,9 @@ override_dh_auto_install:
 	(cd ${SB_TOP}/build/production/utils/contrail-cli/contrail_config_cli; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
 	(cd ${SB_TOP}/build/production/utils/contrail-cli/contrail_control_cli; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
 	(cd ${SB_TOP}/build/production/utils/contrail-cli/contrail_vrouter_cli; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
+	# contrail-docs
+	# Index files
+	python ${SB_TOP}/tools/packages/utils/generate_doc_index.py ${INSTALL_ROOT}/usr/share/doc/contrail-docs/html/messages
 
 override_dh_auto_clean:
 	dh_auto_clean
@@ -108,6 +113,7 @@ override_dh_installinit:
 	dh_installinit --name=supervisor-control
 	dh_installinit --name=supervisor-config
 	dh_installinit --name=supervisor-vrouter --no-restart-on-upgrade
+	dh_installinit --name=supervisor-database
 
 override_dh_strip:
 	dh_strip -pcontrail-analytics --dbg-package=contrail-analytics-dbg
