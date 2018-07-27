@@ -118,8 +118,7 @@ source-package-contrail: prepare-contrail
 prepare-contrail: clean-contrail debian-contrail
 	$(eval PACKAGE := contrail)
 	@echo "Preparing build environment for package $(PACKAGE)"
-	(ln -sf $(PWD) build/packages/$(PACKAGE)  && \
-	 cp -R tools/packages/debian/$(PACKAGE)/debian .)
+	(cp -R tools/packages/debian/$(PACKAGE)/debian .)
 
 package-neutron-plugin-contrail: debian-neutron-plugin-contrail
 	$(eval PACKAGE = neutron-plugin-contrail)
