@@ -47,13 +47,11 @@ function pkt_setup () {
 
 source /etc/contrail/agent_param
 
-source $VHOST_CFG
-
 function insert_vrouter() {
     depmod -a
 
     # if the running vrouter doesnt match kernel version, remove it
-    modinfo vrouter | grep filename | grep `/usr/bin/uname -r`
+    modinfo vrouter | grep filename | grep `/bin/uname -r`
     if [ $? != 0 ]
     then
         rmmod vrouter; modprobe $kmod
