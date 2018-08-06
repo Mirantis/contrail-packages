@@ -204,6 +204,7 @@ source-package-contrail-vrouter-dpdk: clean-contrail-vrouter-dpdk debian-contrai
 	tar zcf build/packages/$(PACKAGE)_$(CONTRAIL_VERSION).orig.tar.gz $(SOURCE_CONTRAIL_ARCHIVE)
 	(cd build/packages/$(PACKAGE)/debian; sed -i '/SUPERVISORDEP_SERIES/r supervisordep.$(SERIES)' control)
 	sed -i '/SUPERVISORDEP_SERIES/d' build/packages/$(PACKAGE)/debian/control
+	$(eval CONTRAIL_INSTALL_SERIES := $(shell cd build/packages/$(PACKAGE)/debian; find . -name '*.install.$(SERIES)'))
 	@echo "Building source package $(PACKAGE)"
 	$(foreach series_fname, $(CONTRAIL_INSTALL_SERIES), \
 			(cd build/packages/$(PACKAGE)/debian;\
