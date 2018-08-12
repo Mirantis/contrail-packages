@@ -217,6 +217,7 @@ vrouter_dpdk_start() {
 
     loops=0
     # wait for vRouter/DPDK to start
+    /bin/systemctl start contrail-vrouter-dpdk.service || true
     while ! _is_vrouter_dpdk_running
     do
         sleep 5
@@ -364,7 +365,7 @@ _dpdk_vrouter_ini_update() {
         dpdk_vdev=""
         if [ -n "${DPDK_BOND_MODE}" -a -n "${DPDK_BOND_NUMA}" ]; then
             echo "${0##*/}: updating bonding configuration in ${VROUTER_DPDK_INI}..."
-        
+
             dpdk_vdev=" --vdev \"eth_bond_${DPDK_PHY},mode=${DPDK_BOND_MODE}"
             dpdk_vdev="${dpdk_vdev},xmit_policy=${DPDK_BOND_POLICY}"
             dpdk_vdev="${dpdk_vdev},socket_id=${DPDK_BOND_NUMA},mac=${DPDK_PHY_MAC}"
@@ -379,7 +380,7 @@ _dpdk_vrouter_ini_update() {
             -e "s/(^ *${VROUTER_DPDK_CMD_KEY} *=.*vrouter-dpdk.*) (--vdev +\"[^\"]+\"|--vdev +[^ ]+)(.*) *$/\1\3/" \
             -e "s/(^ *${VROUTER_DPDK_CMD_KEY} *=.*vrouter-dpdk.*)/\\1${dpdk_vdev}/" \
              ${VROUTER_DPDK_INI}
-    fi         
+    fi
 
 
     ## update VLAN configuration
@@ -574,6 +575,7 @@ vrouter_dpdk_if_unbind() {
     _dpdk_conf_read
     echo "$(date): Waiting for vRouter/DPDK to stop..."
     loops=0
+    /bin/systemctl stop contrail-vrouter-dpdk.service || true
     while _is_vrouter_dpdk_running
     do
         sleep 2
@@ -612,7 +614,7 @@ vrouter_dpdk_if_unbind() {
             ifdown $iface
          fi
     done
- 
+
     # Make the bond slaves up
     # Bond slaves with automatically make the bond master up
     for iface in $(ifquery --list);
