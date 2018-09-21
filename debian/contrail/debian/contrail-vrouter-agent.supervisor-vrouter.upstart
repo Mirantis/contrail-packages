@@ -15,8 +15,10 @@ respawn
 respawn limit 10 90
 
 pre-start script
-    if [ -f /opt/contrail/bin/vrouter-pre-start.sh ]; then
-        /opt/contrail/bin/vrouter-pre-start.sh
+    if [ -f /usr/lib/contrail/bin/vrouter-dpdk-pre-start.sh ]; then
+        /usr/lib/contrail/bin/vrouter-dpdk-pre-start.sh
+    elif [ -f /usr/lib/contrail/bin/vrouter-pre-start.sh ]; then
+        /usr/lib/contrail/bin/vrouter-pre-start.sh
     fi
     ulimit -s unlimited
     ulimit -c unlimited
@@ -36,8 +38,8 @@ script
 end script
 
 post-start script
-    if [ -f /opt/contrail/bin/vrouter-post-start.sh ]; then
-        /opt/contrail/bin/vrouter-post-start.sh
+    if [ -f /usr/lib/contrail/bin/vrouter-post-start.sh ]; then
+        /usr/lib/contrail/bin/vrouter-post-start.sh
     fi
 end script
 
@@ -49,13 +51,15 @@ pre-stop script
         supervisorctl -s unix:///var/run/supervisord_vrouter.sock stop all
         supervisorctl -s unix:///var/run/supervisord_vrouter.sock shutdown
     fi
-    if [ -f /opt/contrail/bin/vrouter-pre-stop.sh ]; then
-        /opt/contrail/bin/vrouter-pre-stop.sh
+    if [ -f /usr/lib/contrail/vrouter-pre-stop.sh ]; then
+        /usr/lib/contrail/vrouter-pre-stop.sh
     fi
 end script
 
 post-stop script
-    if [ -f /opt/contrail/bin/vrouter-post-stop.sh ]; then
-        /opt/contrail/bin/vrouter-post-stop.sh
+    if [ -f /usr/lib/contrail/bin/vrouter-dpdk-post-stop.sh ]; then
+        /usr/lib/contrail/bin/vrouter-dpdk-post-stop.sh
+    elif [ -f /usr/lib/contrail/bin/vrouter-post-stop.sh ]; then
+        /usr/lib/contrail/bin/vrouter-post-stop.sh
     fi
 end script
