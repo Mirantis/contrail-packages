@@ -74,6 +74,13 @@ LOGFILE=--log-file=/var/log/contrail/vrouter.log
 EOF
   fi
 
+  # On DPDK envs, agent should be stopped if DPDK service is stopped.
+  # To achieve this behaviour, we add "BindsTo" to agent.service file
+  if [ -f /usr/lib/contrail/bin/dpdk_vnagent_ExecStartPre.sh ]; then
+    sed -i '/\[Unit\]/a BindsTo=contrail-vrouter-dpdk.service' /lib/systemd/system/${NAME}.service
+    systemctl daemon-reload
+  fi
+
   # change file permissions during upgrade
   if [ -f /var/log/contrail/contrail-vrouter-nodemgr-stdout.log ]; then
     chown contrail:contrail /var/log/contrail/process_statecontrail-vrouter.json
