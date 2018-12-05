@@ -14,5 +14,6 @@ Architecture: all
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: python-contrail, ${misc:Depends}, ${python:Depends}
 Recommends: ${python:Recommends}
+XB-Private-MCP-Code-SHA: HEAT_SHA
 Description: OpenStack virtual network service - Opencontrail
  This package provides the OpenContrail heat resources and a few templates .
