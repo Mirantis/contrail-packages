@@ -2,7 +2,7 @@
 Description=Contrail WebUI Web Server
 ConditionPathExists=/etc/contrail/config.global.js
 After=network.target
-StartLimitIntervalSec=0
+StartLimitInterval=0
 
 [Service]
 WorkingDirectory=/var/lib/contrail-webui/contrail-web-core

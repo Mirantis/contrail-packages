@@ -2,7 +2,7 @@
 Description=Contrail WebUI Job Server
 ConditionPathExists=/etc/contrail/config.global.js
 After=network.target
-StartLimitIntervalSec=0
+StartLimitInterval=0
 
 [Service]
 RestartSec=3s

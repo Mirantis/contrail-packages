@@ -1,7 +1,7 @@
 [Unit]
 Description=Contrail Database
 After=network.target
-StartLimitIntervalSec=0
+StartLimitInterval=0
 
 [Service]
 RestartSec=3s
