@@ -462,7 +462,7 @@ Architecture: amd64
 Depends: dpkg-dev,
          contrail-database-common,
          ntp,
-         kafka (>= 2.11),
+         confluent-kafka-2.11 (>= 1.1.1-1),
          libsensors4,
          sysstat,
          ${misc:Depends},
