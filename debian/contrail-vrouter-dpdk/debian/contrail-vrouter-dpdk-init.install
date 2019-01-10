@@ -1,0 +1,15 @@
+debian/vrouter_files/contrail-vrouter-dpdk.ini   etc/contrail/supervisord_vrouter_files/
+debian/vrouter_files/contrail-vrouter-dpdk.rules etc/contrail/supervisord_vrouter_files/
+debian/vrouter_files/contrail-vrouter-nodemgr.ini etc/contrail/supervisord_vrouter_files/
+debian/vrouter_files/vrouter-dpdk-pre-start.sh   usr/lib/contrail/bin
+debian/vrouter_files/vrouter-dpdk-post-stop.sh   usr/lib/contrail/bin
+debian/vrouter_files/dpdk_vnagent_ExecStartPost.sh usr/lib/contrail/bin
+debian/vrouter_files/dpdk_vnagent_ExecStartPre.sh usr/lib/contrail/bin
+debian/vrouter_files/dpdk_vnagent_ExecStopPost.sh usr/lib/contrail/bin
+debian/vrouter_files/vrouter-pre-start.sh        usr/lib/contrail/bin
+debian/vrouter_files/vrouter-pre-stop.sh         usr/lib/contrail/bin
+debian/vrouter_files/dpdk_nic_bind.py            usr/lib/contrail/bin
+debian/vrouter_files/if-vhost0                   usr/lib/contrail/bin
+debian/vrouter_files/vnagent_param_setup.sh      usr/lib/contrail/bin
+debian/vrouter_files/contrail_reboot             etc/contrail
+debian/vrouter_files/rpm_agent.conf              etc/contrail

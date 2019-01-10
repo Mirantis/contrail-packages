@@ -1,15 +1,49 @@
 Source: contrail-vrouter-dpdk
-Maintainer: OpenContrail Developers
+Maintainer: OpenContrail Developers <dev@lists.opencontrail.org>
 Section: net
 Priority: optional
+Build-Depends: liburcu-dev,
+               lsb-release,
+               debhelper (>= 8.0.0),
+               scons (>= 2.1.0),
+               autoconf,
+               automake,
+               libtool,
+               pkg-config,
+               flex,
+               bison,
+               libxml2-dev,
+               openssl,
+               libboost-dev,
+               libpcap0.8-dev,
+               libnl-3-dev,
+               libnl-genl-3-dev,
+               BUILDDEP_SERIES
 
 Package: contrail-vrouter-dpdk
 Architecture: all
 Depends: contrail-vrouter-utils (= ${binary:Version}),
-         contrail-dpdk-kernel-modules-dkms, liburcu2, ${misc:Depends}
+         contrail-dpdk-kernel-modules-dkms,
+         ${misc:Depends}
 Provides: contrail-vrouter
 Description: OpenContrail VRouter - DPDK version
  OpenContrail is a network virtualization solution that provides an overlay
  virtual-network to virtual-machines, containers or network namespaces.
  .
  This package contains the OpenContrail vrouter/DPDK.
+
+Package: contrail-vrouter-dpdk-init
+Architecture: all
+Depends: contrail-vrouter-dpdk (= ${binary:Version}),
+         contrail-vrouter-utils (= ${binary:Version}),
+         contrail-vrouter-agent,
+         python-contrail-vrouter-api,
+         python-opencontrail-vrouter-netns,
+         supervisor,
+         ${misc:Depends}
+Description: OpenContrail VRouter - DPDK version startup scripts
+ OpenContrail is a network virtualization solution that provides an overlay
+ virtual-network to virtual-machines, containers or network namespaces.
+ .
+ This package contains the OpenContrail vrouter/DPDK startup and monitoring
+ scripts.
