@@ -1,0 +1,3 @@
+debian/vrouter_files/contrail-vrouter-dpdk.ini   etc/contrail/supervisord_vrouter_files/
+debian/vrouter_files/contrail-vrouter-dpdk.rules etc/contrail/supervisord_vrouter_files/
+debian/vrouter_files/contrail-vrouter-nodemgr.ini etc/contrail/supervisord_vrouter_files/
