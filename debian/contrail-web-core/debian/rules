@@ -4,8 +4,20 @@ SB_TOP := $(shell pwd | sed -re "s/(.*)\/build\/packages(.*)/\1/")
 INSTALL_ROOT := $(shell pwd)
 export REPO=${SB_TOP}/contrail-web-core
 
+VER := $(shell lsb_release -c)
+
+ifeq (,$(findstring trusty,$(VER)))
+        DH_CMD=$@ --with systemd
+else
+        DH_CMD=$@
+endif
+
 %:
-	dh $@
+	dh $(DH_CMD)
+
+override_dh_installinit:
+	dh_installinit
+	dh_installinit --name=contrail-webui
 
 override_dh_auto_build:
 	# We can't use make package directly because it tries to fetch third party
@@ -17,12 +29,18 @@ override_dh_auto_build:
 	cp -a webroot/html/dashboard.tmpl webroot/html/dashboard.html; \
 	cp -a webroot/html/login.tmpl webroot/html/login.html; \
 	cp -a webroot/html/login-error.tmpl webroot/html/login-error.html; \
-	./generate-files.sh 'prod-env' $(REPO); \
-	./dev-install.sh; \
-	./build-files.sh 'prod-env' $(REPO); \
-	./prod-dev.sh webroot/html/dashboard.html prod_env dev_env true; \
-	./prod-dev.sh webroot/html/login.html prod_env dev_env true; \
-	./prod-dev.sh webroot/html/login-error.html prod_env dev_env true)
+	bash generate-keys.sh; \
+	./generate-files.sh 'prod-env' $(REPO));
+	(cd ${SB_TOP}/contrail-web-core; \
+	./dev-install.sh;)
+	(cd ${SB_TOP}/contrail-web-core; \
+	./build-files.sh "prod-env" $(REPO);)
+	(cd ${SB_TOP}/contrail-web-core; \
+	./prod-dev.sh webroot/html/dashboard.html prod_env dev_env true;)
+	(cd ${SB_TOP}/contrail-web-core; \
+	./prod-dev.sh webroot/html/login.html prod_env dev_env true;)
+	(cd ${SB_TOP}/contrail-web-core; \
+	./prod-dev.sh webroot/html/login-error.html prod_env dev_env true;)
 
 override_dh_install:
 	cp -r -a ${SB_TOP}/contrail-web-core/Gruntfile.js ${INSTALL_ROOT}
