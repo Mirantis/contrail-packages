@@ -9,4 +9,11 @@ usr/lib/python*/dist-packages/ContrailVrouterCli*
 usr/lib/python*/dist-packages/contrail_vrouter_provisioning*
 usr/bin/contrail-toragent-setup
 usr/bin/contrail-toragent-cleanup
+debian/vrouter_files/contrail-vrouter.rules etc/contrail/supervisord_vrouter_files
+debian/vrouter_files/if-vhost0 usr/lib/contrail
+debian/vrouter_files/vrouter-functions.sh usr/lib/contrail
+debian/vrouter_files/vrouter-post-start.sh usr/lib/contrail
+debian/vrouter_files/vrouter-pre-start.sh usr/lib/contrail
+debian/vrouter_files/vrouter-pre-stop.sh usr/lib/contrail
+debian/vrouter_files/20-vrouter-core-pattern.conf etc/sysctl.d
 INSTALL_SERIES
