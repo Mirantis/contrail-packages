@@ -14,6 +14,7 @@ Architecture: all
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: python-ceilometer, ${misc:Depends}, ${python:Depends}
 Recommends: ${python:Recommends}
+XB-Private-MCP-Code-SHA: CEILOMETER_SHA
 Description: OpenContrail plugin for OpenStack Ceilometer
  Ceilometer aims to deliver a unique point of contact for billing systems to
  aquire all counters they need to establish  customer billing, accross all

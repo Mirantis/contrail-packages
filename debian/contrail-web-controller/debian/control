@@ -12,6 +12,7 @@ Package: contrail-web-controller
 Architecture: all
 Depends: contrail-web-core
 Recommends: redis-server
+XB-Private-MCP-Code-SHA: WEB_CONTROLLER_SHA
 Description: OpenContrail WebUI Controller
  OpenContrail Web UI for the management of Contrail network virtualization
  solution. This module interacts with other components of both Contrail network
