@@ -39,7 +39,7 @@ Depends: contrail-vrouter-dpdk (= ${binary:Version}),
          contrail-vrouter-agent,
          python-contrail-vrouter-api,
          python-opencontrail-vrouter-netns,
-         supervisor,
+         SUPERVISORDEP_SERIES
          ${misc:Depends}
 Description: OpenContrail VRouter - DPDK version startup scripts
  OpenContrail is a network virtualization solution that provides an overlay
