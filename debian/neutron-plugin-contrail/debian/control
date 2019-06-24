@@ -14,6 +14,7 @@ Architecture: all
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: python-contrail, ${misc:Depends}, ${python:Depends}
 Recommends: ${python:Recommends}
+XB-Private-MCP-Code-SHA: NEUTRON_PLUGIN_SHA
 Description: OpenStack virtual network service - Opencontrail
  Neutron provides an API to dynamically request and configure virtual networks.
  These networks connect "interfaces" from other OpenStack services (such as
