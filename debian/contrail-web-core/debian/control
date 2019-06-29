@@ -10,7 +10,7 @@ Homepage: https://github.com/Juniper/contrail-web-core/
 
 Package: contrail-web-core
 Architecture: amd64
-Depends: nodejs, redis-server (>= 2:2.6.13-1), ${misc:Depends}
+Depends: nodejs-legacy, redis-server (>= 2:2.6.13-1), ${misc:Depends}
 Description: OpenContrail WebUI Core
  OpenContrail Web UI for the management of Contrail network virtualization
  solution. This module interacts with other components of both Contrail network
