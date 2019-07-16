@@ -24,7 +24,6 @@ Package: contrail-vrouter-dpdk
 Architecture: all
 Depends: contrail-vrouter-utils (= ${binary:Version}),
          liburcu4,
-         contrail-dpdk-kernel-modules-dkms,
          ${misc:Depends}
 Provides: contrail-vrouter
 XB-Private-MCP-Code-SHA: VROUTER_SHA
