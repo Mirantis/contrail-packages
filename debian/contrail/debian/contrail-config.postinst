@@ -32,7 +32,7 @@ if [ "$1" = "configure" ]; then
   chown contrail:contrail /usr/share/contrail-utils/contrail-cassandra-repair.py
   chown -h contrail:contrail /usr/bin/contrail-cassandra-repair
 
-  if [ -f /var/log/cassandra/status.log]; then
+  if [ -f /var/log/cassandra/status.log ]; then
     mv /var/log/cassandra/status-up /var/log/contrail/cassandra-status-up
     chown contrail:contrail /var/log/contrail/cassandra-status-up
     mv /var/log/cassandra/status.log /var/log/contrail/cassandra-status.log
