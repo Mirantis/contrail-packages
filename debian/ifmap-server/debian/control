@@ -26,6 +26,7 @@ Depends: adduser,
          ${java:Depends},
          ${misc:Depends}
 Recommends: ${java:Recommends}
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Description: irond is a IF-MAP MAP server
  irond is an experimental IF-MAP 2.0 compliant MAP server written in
  JAVA. irond supports both basic authentication and certificate-based

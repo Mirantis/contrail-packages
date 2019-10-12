@@ -9,6 +9,7 @@ Vcs-Browser: https://github.com/Juniper/contrail-controller/
 XS-Python-Version: >= 2.7
 Build-Depends: autoconf,
                automake,
+               lsb-release,
                bison,
                debhelper (>= 8.0.0),
                flex,
@@ -32,15 +33,28 @@ Build-Depends: autoconf,
                unzip,
                vim-common,
                libsnmp-python,
-               libipfix,
-               librdkafka-dev (>= 0.9.0),
+               libipfix-dev,
+               librdkafka-dev,
+               librdkafka1,
+               libzookeeper-mt-dev,
+               libsasl2-dev,
                cassandra-cpp-driver,
                cassandra-cpp-driver-dev,
                libzookeeper-mt-dev,
                libgrok-dev,
+               liburcu-dev,
+               libopenmpi-dev,
+               liblz4-dev,
+               libgrok1,
+               libpcre3-dev,
+               libevent-dev,
+               gperf,
+               libtokyocabinet-dev,
+               ctags,
                BUILDDEP_SERIES
 
 Package: contrail-analytics
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: adduser,
          contrail-lib (>= ${binary:Version}),
@@ -84,6 +98,7 @@ Description: OpenContrail analytics
  logs, events, and errors.
 
 Package: contrail-analytics-dbg
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: any
 Section: debug
 Priority: extra
@@ -98,6 +113,7 @@ Description: OpenContrail analytics (debugging symbols)
  package.
 
 Package: contrail-config
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: adduser,
          python-bitarray (>= 0.8.0),
@@ -140,6 +156,7 @@ Description: OpenContrail configuration management
  interacting with network elements. Both these are kept in a NoSQL database.
 
 Package: contrail-config-openstack
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: contrail-config (>= ${source:Version}),
          python-keystoneclient (>= 0.2.2),
@@ -171,11 +188,13 @@ Description: OpenContrail configuration OpenStack module
  with OpenStack.
 
 Package: contrail-config-vmware
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: contrail-config (>= ${source:Version})
 Description: OpenContrail VMWare configuration module.
 
 Package: contrail-control
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Depends: adduser,
          authbind,
          contrail-lib (>= ${binary:Version}),
@@ -207,6 +226,7 @@ Description: OpenContrail control-node
  eventually consistent.
 
 Package: contrail-control-dbg
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: any
 Section: debug
 Priority: extra
@@ -222,6 +242,7 @@ Description: OpenContrail control-node (debugging symbols)
  package.
 
 Package: contrail-dns
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Depends: adduser,
          authbind,
          contrail-lib (>= ${binary:Version}),
@@ -236,14 +257,18 @@ Description: OpenContrail control-dns
  Provides contrail DNS services
 
 Package: contrail-vrouter-agent
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
+Pre-Depends: ${misc:Pre-Depends}, debconf
 Depends: adduser,
          contrail-lib (>= ${binary:Version}),
          contrail-vrouter,
          SUPERVISORDEP_SERIES
+         VROUTERDEP_SERIES
          ${misc:Depends},
          ${shlibs:Depends}
 Recommends: contrail-nodemgr (>= ${source:Version}),
 Architecture: amd64
+Conflicts: apport
 Description: OpenContrail vrouter agent
  OpenContrail is a network virtualization solution that provides an overlay
  virtual-network to virtual-machines, containers or network namespaces.
@@ -251,6 +276,7 @@ Description: OpenContrail vrouter agent
  This package provides the contrail-vrouter user space agent.
 
 Package: contrail-vrouter-agent-dbg
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: any
 Section: debug
 Priority: extra
@@ -265,12 +291,14 @@ Description: OpenContrail contrail-vrouter-agent (debugging symbols)
  package.
 
 Package: python-contrail
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Section: python
 Depends: python-bottle,
          python-kombu,
          python-gevent (>= 1.0),
          python-importlib,
+         python-requests (>= 2.10),
          ${misc:Depends},
          ${python:Depends}
 Replaces: contrail-api-lib, contrail-libs
@@ -282,6 +310,7 @@ Description: OpenContrail python-libs
  The package python-opencontrail provides the OpenContrail API library.
 
 Package: contrail-lib
+XB-Private-MCP-Code-SHA: THIRD_PARTY_SHA
 Architecture: amd64
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Replaces: libtbb2
@@ -294,6 +323,7 @@ Description: OpenContrail libraries
  OpenContrail control and compute nodes.
 
 Package: contrail-utils
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: dpkg-dev,
          lsof,
@@ -311,6 +341,7 @@ Description: OpenContrail tools and utilities
  scripts to configure and diagnose OpenContrail.
 
 Package: python-contrail-vrouter-api
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Section: python
 Depends: contrail-vrouter-agent, ${misc:Depends}, ${python:Depends}
@@ -320,6 +351,7 @@ Description: OpenContrail vrouter agent api
  in the OpenContrail API server.
 
 Package: python-opencontrail-vrouter-netns
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Section: python
 Depends: ${misc:Depends}, ${python:Depends}
@@ -327,6 +359,7 @@ Description: OpenContrail vrouter network namespace package
  Script to start or destroy a Linux network namespace.
 
 Package: contrail-vrouter-utils
+XB-Private-MCP-Code-SHA: VROUTER_SHA
 Architecture: amd64
 Depends: tcpdump, ${misc:Depends}, ${shlibs:Depends}
 Description: OpenContrail VRouter - Utilities
@@ -337,6 +370,7 @@ Description: OpenContrail VRouter - Utilities
  configure and diagnose the OpenContrail Linux kernel module.
 
 Package: contrail-vrouter-source
+XB-Private-MCP-Code-SHA: VROUTER_SHA
 Architecture: amd64
 Depends: bzip2, debhelper, module-assistant, ${misc:Depends}
 Description: OpenContrail VRouter - Source
@@ -352,6 +386,7 @@ Description: OpenContrail VRouter - Source
  module in source code format.
 
 Package: contrail-vrouter-dkms
+XB-Private-MCP-Code-SHA: VROUTER_SHA
 Architecture: amd64
 Depends: contrail-vrouter-utils (>= ${binary:Version}),
          dkms,
@@ -373,6 +408,7 @@ Description: OpenContrail VRouter - DKMS version
  module.
 
 Package: contrail-nova-driver
+XB-Private-MCP-Code-SHA: NOVA_CONTRAIL_SHA
 Architecture: amd64
 Depends: python-thrift, ${misc:Depends}, ${python:Depends}
 Description: OpenStack Nova compute-node driver for OpenContrail
@@ -382,6 +418,7 @@ Description: OpenStack Nova compute-node driver for OpenContrail
  This package contains the OpenStack Nova compute-node driver for OpenContrail.
 
 Package: contrail-nodemgr
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: python-contrail (>= ${source:Version}),
          python-lxml,
@@ -398,6 +435,7 @@ Description: OpenContrail nodemgr implementation
  This package contains the OpenContrail node manager service.
 
 Package: contrail-docs
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: any
 Description: Documentation for OpenContrail
  OpenContrail is a network virtualization solution that provides an overlay
@@ -406,10 +444,39 @@ Description: Documentation for OpenContrail
  This package contains the documentation for messages generated by
  OpenContrail modules/daemons.
 
+Package: contrail-database-common
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
+Architecture: amd64
+Depends: dpkg-dev,
+         SUPERVISORDEP_SERIES
+         contrail-nodemgr,
+         zookeeper,
+         zookeeperd,
+         cassandra (>= 1.2.11),
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Description: OpenContrail database integration
+
+Package: contrail-openstack-database
+Architecture: amd64
+Depends: dpkg-dev,
+         contrail-database-common,
+         ntp,
+         confluent-kafka-2.11 (>= 1.1.1-1),
+         libsensors4,
+         sysstat,
+         ${misc:Depends},
+         ${python:Depends},
+         ${shlibs:Depends}
+Description: OpenContrail Openstack database integration
+
 Package: contrail-kube-manager
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: python-requests,
          python-gevent,
+         python-bitstring,
          python-contrail (>= ${source:Version}),
          ${misc:Depends},
          ${python:Depends}
@@ -422,6 +489,7 @@ Description: OpenContrail kubernetes network manager
  with OpenContrail.
 
 Package: contrail-mesos-manager
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: python-requests,
          python-gevent,
@@ -437,6 +505,7 @@ Description: OpenContrail mesos network manager
  with OpenContrail.
 
 Package: contrail-kube-cni
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: ${misc:Depends},
          ${python:Depends}
@@ -447,6 +516,7 @@ Description: OpenContrail kubernetes cni plugin
  with OpenContrail.
 
 Package: contrail-cni
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Depends: ${misc:Depends},
          ${python:Depends}
@@ -457,6 +527,7 @@ Description: OpenContrail mesos/kubernetes cni plugin
  with OpenContrail.
 
 Package: contrail-k8s-cni
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Description: OpenContrail kubernetes cni plugin
  Kubernetes opencontrail cni plugin for adding network support for pods.
@@ -465,6 +536,7 @@ Description: OpenContrail kubernetes cni plugin
  with OpenContrail.
 
 Package: contrail-mesos-cni
+XB-Private-MCP-Code-SHA: CONTROLLER_SHA
 Architecture: amd64
 Description: OpenContrail mesos cni plugin
  Mesos opencontrail cni plugin for adding network support for tasks.
