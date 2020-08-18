@@ -26,6 +26,7 @@ Depends: contrail-vrouter-utils (= ${binary:Version}),
          contrail-dpdk-kernel-modules-dkms,
          ${misc:Depends}
 Provides: contrail-vrouter
+XB-Private-MCP-Code-SHA: VROUTER_SHA
 Description: OpenContrail VRouter - DPDK version
  OpenContrail is a network virtualization solution that provides an overlay
  virtual-network to virtual-machines, containers or network namespaces.
@@ -39,8 +40,9 @@ Depends: contrail-vrouter-dpdk (= ${binary:Version}),
          contrail-vrouter-agent,
          python-contrail-vrouter-api,
          python-opencontrail-vrouter-netns,
-         supervisor,
+         SUPERVISORDEP_SERIES
          ${misc:Depends}
+XB-Private-MCP-Code-SHA: VROUTER_SHA
 Description: OpenContrail VRouter - DPDK version startup scripts
  OpenContrail is a network virtualization solution that provides an overlay
  virtual-network to virtual-machines, containers or network namespaces.

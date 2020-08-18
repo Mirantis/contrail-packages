@@ -28,9 +28,9 @@ else
 endif
 
 ifneq (,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
-	JOBS = -j$(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
+	JOBS = $(patsubst parallel=%,%,$(filter parallel=%,$(DEB_BUILD_OPTIONS)))
 else
-	JOBS =
+	JOBS = 1
 endif
 
 TARGETS=control-node:node_mgr \
@@ -62,7 +62,7 @@ override_dh_auto_install:
 	(cd ${INSTALL_ROOT}/usr/src/vrouter && tar zcf ${INSTALL_ROOT}/_debian/tmp/contrail-vrouter-$(DEB_UPSTREAM_VERSION).tar.gz .)
 	sed "s/__VERSION__/$(DEB_UPSTREAM_VERSION)/g" debian/dkms.conf.in > ${INSTALL_ROOT}/usr/src/vrouter/dkms.conf
 	# Node manager - XXX: Add node_mgr targets to the default list of targets
-	(cd ${SB_TOP}; scons $(JOBS) --opt=production --root=${INSTALL_ROOT} ${TARGETS})
+	(cd ${SB_TOP}; scons -j $(JOBS) --opt=production --root=${INSTALL_ROOT} ${TARGETS})
 	(cd ${SB_TOP}/build/production/nodemgr; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
 	(cd ${SB_TOP}/build/production/control-node; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
 	(cd ${SB_TOP}/build/production/vnsw/agent/uve; python setup.py install --root=${INSTALL_ROOT} --install-layout=deb)
@@ -95,7 +95,7 @@ override_dh_auto_install:
 override_dh_auto_clean:
 	dh_auto_clean
 	rm -rf debian/manpages/*.1 build/ config.log .scon* vrouter/dp-core/vr_buildinfo.c || /bin/true
-	(cd vrouter/ && make clean)
+#	(cd vrouter/ && make clean)
 	find . -name "*.pyc" -delete
 
 override_dh_install:
