@@ -17,6 +17,7 @@ Architecture: all
 Pre-Depends: dpkg (>= 1.15.6~)
 Depends: ${misc:Depends}, ${python:Depends}
 Recommends: ${python:Recommends}
+XB-Private-MCP-Code-SHA: THIRD_PARTY_SHA
 Description: Python library for building IF-MAP clients.
  It supports the Trusted Computing Group IF-MAP protocol v.2.0
  There is no support for IF-MAP 1.0 or 1.1 and there are no plans
